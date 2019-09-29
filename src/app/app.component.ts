@@ -15,7 +15,7 @@ export class AppComponent {
  ngOnInit() {
    this.todoTitle = '';
    this.todoList = [
-     { title: 'Install Angular CLI', isDone: false },
+     { title: 'Install Angular CLI', isDone: false, date: null },
    ];
  }
 
@@ -23,7 +23,7 @@ export class AppComponent {
    this.todoList.push({
      title: this.todoTitle,
      isDone: false,
-   
+     date: new Date()
    });
 
    this.todoTitle = '';

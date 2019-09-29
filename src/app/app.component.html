@@ -5,6 +5,7 @@
 <ul align="center" class="list-group" >
   <li [ngClass]="{'list-group-item':true, done: todo.isDone}" *ngFor="let todo of todoList">
     <div class="view">
+      <label class="date">{{ todo.date | date : "dd.MM.y" }}</label>
       <label>{{ todo.title }}</label>
       <label>Done?</label>
       <input type="checkbox" class="isDoneCheck" [(ngModel)]=todo.isDone>
