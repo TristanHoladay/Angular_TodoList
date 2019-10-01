@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
+import { ITodo } from './interfaces/itodo';
+import { TodoService } from './services/todo.service';
 
 @Component({
   selector: 'app-root',
@@ -9,34 +11,42 @@ import { isNullOrUndefined } from 'util';
 })
 export class AppComponent {
   title = 'Todos';
-  todoList: any [] = [];
+  todoList: ITodo[] = [];
   todoTitle: string;
+  todoId: number;
+
+  constructor(private todoService: TodoService) {}
 
  ngOnInit() {
+   this.todoId = 1;
    this.todoTitle = '';
-   this.todoList = [
-     { title: 'Install Angular CLI', isDone: false, date: null },
-   ];
+   this.todoList = this.todoService.todoList;
+   this.todoList.push({
+      id: this.todoId,
+      isDoing: false,
+      isEditing: false,
+      title: "Angular Todo App",
+      isDone: false,
+      date: new Date(),
+   });
  }
 
  addTodo():void {
-   this.todoList.push({
+   this.todoId++;
+    this.todoService.add({
+     id: this.todoId,
      title: this.todoTitle,
      isDone: false,
-     date: new Date()
+     isDoing: false,
+     isEditing: false,
+     date: new Date(),
    });
 
    this.todoTitle = '';
  }
 
-  deleteTodo(todo:any) {
-    const index = this.todoList.findIndex(todoItem => todoItem === todo);
-    this.todoList.splice(index, 1);
-  }
-
-  // markAsDone(todo:any, el:any) {
-  //   console.log(this);
-  //   todo.isDone = !todo.isDone;
-  // }
+ delete(todo: ITodo) {
+   this.todoService.deleteTodo(todo);
+ }
 
 }

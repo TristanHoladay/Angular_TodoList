@@ -2,19 +2,28 @@
 
 <input type="text" class="todo-input" placeholder="Add next todo here" [(ngModel)]="todoTitle" (keyup.enter)=addTodo()>
 <span class="dropright">Press Enter</span>
-<ul align="center" class="list-group" >
-  <li [ngClass]="{'list-group-item':true, done: todo.isDone}" *ngFor="let todo of todoList">
-    <div class="view">
-      <label class="date">{{ todo.date | date : "dd.MM.y" }}</label>
-      <label>{{ todo.title }}</label>
-      <label>Done?</label>
-      <input type="checkbox" class="isDoneCheck" [(ngModel)]=todo.isDone>
-      <div class="float-right">
-        <button type="button" (click)=deleteTodo(todo) class="btn btn-danger btn-sm">Delete</button>
+<div id="container">
+  <ul id="Awaiting_Lane">
+    <li>Awaiting</li>
+  </ul>
+  <ul id="Doing_Lane">
+    <li>Doing</li>
+  </ul>
+  <ul id="Done_Lane" class="list-group col" >
+    <li [ngClass]="{'list-group-item':true, done: todo.isDone}" *ngFor="let todo of todoList">
+      <div class="view container">
+        <label>{{ todo.date | date : "dd.MM.y" }}</label>
+        <label>{{ todo.title }}</label>
+        <label>Done?</label>
+        <input type="checkbox" class="isDoneCheck" [(ngModel)]=todo.isDone>
+        <div class="float-right">
+          <confirmation-modal [todo]='todo'></confirmation-modal>
+          <!--<button type="button" (click)=deleteTodo(todo) class="btn btn-danger btn-sm">Delete</button>-->
+        </div>
       </div>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
+</div>
 
 
 <router-outlet></router-outlet>
