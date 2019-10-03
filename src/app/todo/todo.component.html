@@ -2,20 +2,20 @@
   <input type="text" class="todo-input" placeholder="Add next todo here" [(ngModel)]="todoTitle" (keyup.enter)=addTodo()>
   <span class="dropright">Press Enter</span>
   <div id="statusDisplayChoice">
-    <button class="displayBtn btn btn-primary">All</button>
-    <button class="displayBtn btn btn-primary">Done</button>
-    <button class="displayBtn btn btn-primary">Not Done</button>
+    <button class="displayBtn btn btn-primary" [routerLink]="['']">All</button>
+    <button class="displayBtn btn btn-primary" [routerLink]="['done']">Done</button>
+    <button class="displayBtn btn btn-primary" [routerLink]="['undone']">Not Done</button>
   </div>
 </div>
 
 <div id="container">
-  <ul id="Done_Lane" class="list-group col" >
+  <ul class="list-group" >
     <li [ngClass]="{'list-group-item':true, done: todo.isDone}" *ngFor="let todo of todoList">
       <div class="view container">
         <label>{{ todo.date | date : "dd.MM.y" }}</label>
         <label>{{ todo.title }}</label>
         <label>Done?</label>
-        <input type="checkbox" class="isDoneCheck" [(ngModel)]=todo.isDone>
+        <input type="checkbox" class="isDoneCheck" [(ngModel)]=todo.isDone (change)="changeStatus(this.todo)">
         <div class="float-right">
           <confirmation-modal [todo]='todo'></confirmation-modal>
           <!--<button type="button" (click)=deleteTodo(todo) class="btn btn-danger btn-sm">Delete</button>-->

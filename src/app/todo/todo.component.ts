@@ -27,6 +27,14 @@ export class TodoComponent implements OnInit {
    });
  }
 
+ changeStatus(todo: ITodo) {
+   if (todo.isDone) {
+     status = "done";
+   } else {
+     status = "undone"
+   }
+   console.log(status);
+ }
 
  get filteredArray() {
    if (!this.status) {
