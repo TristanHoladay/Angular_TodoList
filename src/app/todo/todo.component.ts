@@ -17,7 +17,7 @@ export class TodoComponent implements OnInit {
   todoTitle: string;
   todoId: number = 1;
   status: string = "";
-  //listEmpty: boolean = false;
+  listEmpty: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private todoService: TodoService) {}
 
@@ -37,9 +37,15 @@ export class TodoComponent implements OnInit {
    if (!this.status) {
      return this.todoService.todoList;
    } else {
-    return this.todoService.todoList.filter(x =>
+    var filteredList = this.todoService.todoList.filter(x =>
       this.status === "done" ? x.isDone : !x.isDone
     );
+    if(filteredList.length === 0) {
+      this.listEmpty = true;
+    } else {
+      this.listEmpty = false;
+    }
+    return filteredList;
    }
  }
 

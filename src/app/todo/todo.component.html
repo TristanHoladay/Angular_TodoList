@@ -11,6 +11,9 @@
   </div>
 </div>
 
+<div *ngIf="listEmpty">
+    <p>There are currently no {{ this.status }} items.</p>
+</div>
 
 <div id="container">
   <ul class="list-group" >
