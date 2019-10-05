@@ -17,6 +17,7 @@ export class TodoComponent implements OnInit {
   todoTitle: string;
   todoId: number = 1;
   status: string = "";
+  //listEmpty: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private todoService: TodoService) {}
 
@@ -27,12 +28,8 @@ export class TodoComponent implements OnInit {
    });
  }
 
- changeStatus(todo: ITodo) {
-   if (todo.isDone) {
-     status = "done";
-   } else {
-     status = "undone"
-   }
+ changeStatus(stat: string) {
+     status = stat;
    console.log(status);
  }
 
@@ -40,9 +37,9 @@ export class TodoComponent implements OnInit {
    if (!this.status) {
      return this.todoService.todoList;
    } else {
-     return this.todoService.todoList.filter(x =>
+    return this.todoService.todoList.filter(x =>
       this.status === "done" ? x.isDone : !x.isDone
-      );
+    );
    }
  }
 

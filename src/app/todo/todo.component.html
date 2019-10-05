@@ -11,15 +11,16 @@
   </div>
 </div>
 
+
 <div id="container">
   <ul class="list-group" >
-    <li [ngClass]="{'list-group-item':true, done: todo.isDone}" class="row" *ngFor="let todo of todoList">
+    <li [ngClass]="{'list-group-item':true, done: todo.isDone, undone: !todo.isDone}" class="row" *ngFor="let todo of filteredArray">
       <div class="view container">
         <label class="col-1">{{ todo.date | date : "dd.MM.y" }}</label>
         <label class="col-4">{{ todo.title }}</label>
         <span class="col-1">
           <label>Done?</label>
-          <input type="checkbox" class="isDoneCheck" [(ngModel)]=todo.isDone (change)="changeStatus(this.todo)">
+          <input type="checkbox" class="isDoneCheck" [(ngModel)]=todo.isDone (change)="changeStatus('done')">
         </span>
         <div class="float-right col-2">
           <confirmation-modal [todo]='todo'></confirmation-modal>

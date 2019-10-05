@@ -7,11 +7,11 @@ label {
 }
 
 .done {
-    background-color: rgba(0, 128, 0, 0.678);
+    background-color: rgba(0, 128, 0, 0.842);
 }
 
 .undone {
-    background-color: rgba(255, 0, 0, 0.514);
+    background-color: rgba(255, 0, 0, 0.685);
 }
 
 .date {
@@ -39,4 +39,10 @@ label {
 
 .displayBtn {
     margin: .2em .3em;
+}
+
+.empty-list {
+    width: 500px;
+    height: 500px;
+    text-align: center;
 }
