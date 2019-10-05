@@ -7,16 +7,34 @@ label {
 }
 
 .done {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.678);
+}
+
+.undone {
+    background-color: rgba(255, 0, 0, 0.514);
 }
 
 .date {
     margin-right: 3em;
 }
 
+.top-input-nav {
+    width: 100%;
+    height: auto;
+    border: 2px solid blue;
+}
+
+.input-container {
+    margin-top: .5em;
+}
+
+.todo-input {
+    width: 75%;
+}
+
 #statusDisplayChoice {
-    display: inline-block;
-    margin: 0 1em;
+    display: flexbox;
+    justify-content: center;
 }
 
 .displayBtn {

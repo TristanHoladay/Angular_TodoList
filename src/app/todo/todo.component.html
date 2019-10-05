@@ -1,22 +1,27 @@
-<div>
-  <input type="text" class="todo-input" placeholder="Add next todo here" [(ngModel)]="todoTitle" (keyup.enter)=addTodo()>
-  <span class="dropright">Press Enter</span>
-  <div id="statusDisplayChoice">
-    <button class="displayBtn btn btn-primary" [routerLink]="['']">All</button>
-    <button class="displayBtn btn btn-primary" [routerLink]="['done']">Done</button>
-    <button class="displayBtn btn btn-primary" [routerLink]="['undone']">Not Done</button>
+<div class="top-input-nav row">
+  <div class="input-container col-sm">
+    <input type="text" class="todo-input col-sm" placeholder="Add next todo here" [(ngModel)]="todoTitle" (keyup.enter)=addTodo()>
+    <span class="dropright">Press Enter</span>
+  </div>
+  <div class="col-6"></div>
+  <div id="statusDisplayChoice" class="col-sm no-gutters">
+    <button class="displayBtn btn btn-primary" [routerLink]="['', '']">All</button>
+    <button class="displayBtn btn btn-primary" [routerLink]="['', 'done']">Done</button>
+    <button class="displayBtn btn btn-primary" [routerLink]="['', 'undone']">Not Done</button>
   </div>
 </div>
 
 <div id="container">
   <ul class="list-group" >
-    <li [ngClass]="{'list-group-item':true, done: todo.isDone}" *ngFor="let todo of todoList">
+    <li [ngClass]="{'list-group-item':true, done: todo.isDone}" class="row" *ngFor="let todo of todoList">
       <div class="view container">
-        <label>{{ todo.date | date : "dd.MM.y" }}</label>
-        <label>{{ todo.title }}</label>
-        <label>Done?</label>
-        <input type="checkbox" class="isDoneCheck" [(ngModel)]=todo.isDone (change)="changeStatus(this.todo)">
-        <div class="float-right">
+        <label class="col-1">{{ todo.date | date : "dd.MM.y" }}</label>
+        <label class="col-4">{{ todo.title }}</label>
+        <span class="col-1">
+          <label>Done?</label>
+          <input type="checkbox" class="isDoneCheck" [(ngModel)]=todo.isDone (change)="changeStatus(this.todo)">
+        </span>
+        <div class="float-right col-2">
           <confirmation-modal [todo]='todo'></confirmation-modal>
           <!--<button type="button" (click)=deleteTodo(todo) class="btn btn-danger btn-sm">Delete</button>-->
         </div>
