@@ -1,0 +1,28 @@
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+      <mat-cell *matCellDef="let todo"> {{todo.position}} </mat-cell>
+    </ng-container>
+  
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-cell *matCellDef="let todo"> {{todo.title}} </mat-cell>
+    </ng-container>
+  
+    <!-- isDone Column -->
+    <ng-container matColumnDef="isDone">
+      <mat-header-cell *matHeaderCellDef> Done? </mat-header-cell>
+      <mat-cell *matCellDef="let todo"> {{todo.isDone}} </mat-cell>
+    </ng-container>
+  
+    <!-- isDoing Column -->
+    <ng-container matColumnDef="isDoing">
+      <mat-header-cell *matHeaderCellDef> Doing? </mat-header-cell>
+      <mat-cell *matCellDef="let todo"> {{todo.isDoing}} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
