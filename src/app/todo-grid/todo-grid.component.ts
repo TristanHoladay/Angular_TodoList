@@ -15,19 +15,22 @@ export class TodoGridComponent implements OnInit, AfterViewInit {
 
   constructor(private todoService: TodoService) { }
 
-  dataSource: MatTableDataSource<ITodo>;
+  @Input() todoList: ITodo[];
+  dataSource = new MatTableDataSource(this.todoList)
 
   displayedColumns: string[] = ['date', 'title', 'isDone', 'isDoing',];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  @ViewChild(TodoComponent, { static: true }) todo: TodoComponent;
+  //@ViewChild(TodoComponent, { static: true }) list: TodoComponent;
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.todoService.todoList);
     this.dataSource.sort = this.sort;
   }
 
   ngAfterViewInit() {
     console.log('Added Array Element');
+    this.todoService.refreshTable().subscribe((data: ITodo[]) => {
+      this.dataSource.data = data;
+    })
   }
 
   applyFilter(filterValue: string) {

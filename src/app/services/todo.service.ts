@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ITodo } from '../interfaces/itodo';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,10 @@ export class TodoService {
       date: new Date()
     }
   ];
+
+  refreshTable(): Observable<ITodo[]> {
+    return of(this.todoList);
+  }
 
   constructor() { }
 
